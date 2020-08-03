@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Untitled</title>
+    <title>Login</title>
     <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/fonts/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static '/css/Login-Form-Dark.css' %}">
@@ -13,8 +13,12 @@
 </head>
 
 <body>
-    <div class="login-dark" style='background-image: url('{% static /img/1103840.jpg %};)'>
+    <div class="login-dark" style=>
+        {% if incorrect %}
+        <p>Incorrect Username and password</p>
+        {% endif %}
         <form method="post">
+            {% csrf_token %}
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
