@@ -13,6 +13,7 @@ class Event(models.Model):
     date = models.CharField(max_length=100, default='')
     time = models.CharField(max_length=100, default='')
 
-class Food (models.Model):
+
+class Food(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField()
