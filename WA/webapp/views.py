@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import User
 from .models import User
+from .models import Event
+from .forms import Event
 
 
 def home(request):
@@ -25,3 +27,9 @@ def loginpage(request):
             return render(request, 'webapp/Login.html', {'incorrect': True})
 
     return render(request, 'webapp/Login.html', {'incorrect': False})
+
+
+def event_detailed_view(request):
+
+    return render(request, "webapp/home.html")
+
