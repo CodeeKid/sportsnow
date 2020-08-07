@@ -10,17 +10,29 @@ from django.contrib.auth.forms import UserCreationForm
 def registerpage(request):
     form = UserCreationForm
     context = {'form': form}
-
     if request.method == "POST":
-        email = request.POST['email']
-        password = request.POST['password'],
+        print(request.POST)
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
         try:
-            user = User.objects.get(email=email, password=password)
-            request.session['user_is_authenticated'] = False
-            return redirect('webapp/register.html')
+            user = User()
+            user.name = username
+            user.email = username
+            if password1 == password2:
+                user.password = password1
+                user.save()
+                request.session['user_is_authenticated'] = True
+                return redirect('/')
+            else:
+                print('password no match')
+                return render(request, 'webapp/register.html', context)
+
         except:
+            print('exception')
             return render(request, 'webapp/register.html', context)
     return render(request, 'webapp/register.html', context)
+
 
 def home(request):
     try:

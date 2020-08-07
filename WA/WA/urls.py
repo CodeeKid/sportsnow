@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('webapp.urls')),
 
+
 ]
-urlpatterns += staticfiles_urlpatterns()
+
