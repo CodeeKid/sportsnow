@@ -1,16 +1,18 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect, HttpResponse
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import  HttpResponse
+from django.contrib.auth import  logout
+from django.shortcuts import render, redirect
 from .forms import User
 from .models import *
 
+
+@login_required()
 def pagelogout(request):
     if request.method == "POST":
         logout(request)
 
-        return redirect('webapp/login.html')
+    return render(request, 'webapp/login.html')
 
 
 def registerpage(request):
@@ -41,11 +43,14 @@ def registerpage(request):
 
     return render(request, 'webapp/register.html', context)
 
-#todo more info page
+
+# todo more info page
 
 def book(request, id):
     event = Event.objects.get(pk=id)
     return HttpResponse(event.title)
+
+
 # todo build page
 
 
@@ -59,7 +64,7 @@ def home(request):
     events_sorted = []
     mini_events = []
     for event in events:
-        #todo add photo link option
+        # todo add photo link option
         if len(mini_events) == 4:
             l = []
             for m in mini_events:
@@ -76,7 +81,7 @@ def home(request):
 
 
 def loginpage(request):
-    #todo sign out
+    # todo sign out
     if request.method == "POST":
         email = request.POST['email']
         password = request.POST['password']
