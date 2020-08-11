@@ -12,6 +12,7 @@ class Event(models.Model):
     subtitle = models.CharField(max_length=100)
     date = models.CharField(max_length=100, default='')
     time = models.CharField(max_length=100, default='')
+    # todo price and short description
 
 
 class Food(models.Model):

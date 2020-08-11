@@ -1,5 +1,7 @@
 from django import forms
-
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
+from django.contrib.auth.models import User
 
 class User(forms.Form):
     email = forms.CharField(max_length=100)
@@ -16,3 +18,9 @@ class Event(forms.Form):
 class Food(forms.Form):
     title = forms.CharField(max_length=100)
     image = forms.ImageField()
+
+
+class CreateUserForm(UserCreationForm):
+
+    model = User
+    fields = ['username', 'email', 'password1', 'password2']
