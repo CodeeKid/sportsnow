@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PAYPAL</title>
+</head>
+<body>
+
+    <div id="paypal-button-container"></div>
+    <script src="https://www.paypal.com/sdk/js?client-id=Ab6Njz7qVA6YsnFS191yCwGPscjZrgVRK_hzhcDgD_FY2h6k3jGOlHFgYpY7-hGmcLm8ncckc-dzH2xm&currency=USD"></script>
+
+        <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '0.01'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                window.location.href = "/thankyou";               });
+            }
+
+
+        }).render('#paypal-button-container');</script>
+</body>
+</html>

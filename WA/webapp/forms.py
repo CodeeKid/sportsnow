@@ -13,6 +13,8 @@ class Event(forms.Form):
     subtitle = forms.CharField(max_length=100)
     date = forms.CharField(max_length=100)
     time = forms.CharField(max_length=100)
+    price = forms.CharField(max_length=100)
+
 
 
 class Food(forms.Form):

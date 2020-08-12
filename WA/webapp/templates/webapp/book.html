@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{event.title}}</title>
+</head>
+
+ <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/Login-Form-Dark.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+<body>
+
+<h1>{{event.subtitle}}</h1>
+<br>
+<h2>{{event.date}}</h2>
+<br>
+<p>{{event.time}}</p>
+
+{{event.price}}
+
+
+<div id="paypal-button-container"></div>
+    <script src="https://www.paypal.com/sdk/js?client-id=Ab6Njz7qVA6YsnFS191yCwGPscjZrgVRK_hzhcDgD_FY2h6k3jGOlHFgYpY7-hGmcLm8ncckc-dzH2xm&currency=USD"></script>
+
+ <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value:'{{event.price}}'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                window.location.href = "/thankyou";               });
+            }
+
+
+        }).render('#paypal-button-container');</script>
+
+
+
+<script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

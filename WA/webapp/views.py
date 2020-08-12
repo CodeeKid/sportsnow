@@ -46,9 +46,19 @@ def registerpage(request):
 
 # todo more info page
 
+
+
+def thankyou(request):
+    return HttpResponse("Thank You!!!")
+def simple_checkout(request):
+    return render(request, 'webapp/simplecheckout.html')
+
+
+
+
 def book(request, id):
     event = Event.objects.get(pk=id)
-    return HttpResponse(event.title)
+    return render(request, 'webapp/book.html', {'event': event})
 
 
 # todo build page
@@ -60,6 +70,7 @@ def home(request):
         user_is_authenticated = request.session['user_is_authenticated']
     except:
         return redirect('/loginpage')
+    #GETS ALL OF THE CLASS EVENT OBJECTS
     events = Event.objects.all()
     events_sorted = []
     mini_events = []
@@ -75,6 +86,15 @@ def home(request):
     l = []
     for m in mini_events:
         l.append(m)
+    if len(mini_events) == 1:
+        l.append('')
+        l.append('')
+        l.append('')
+    if len(mini_events) == 2:
+        l.append('')
+        l.append('')
+    if len(mini_events) == 3:
+        l.append('')
     events_sorted.append(l)
 
     return render(request, 'webapp/home.html', {'events': events_sorted})

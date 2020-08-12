@@ -12,6 +12,9 @@ class Event(models.Model):
     subtitle = models.CharField(max_length=100)
     date = models.CharField(max_length=100, default='')
     time = models.CharField(max_length=100, default='')
+    image_link = models.CharField(max_length=200, default='')
+    price = models.CharField(max_length=100, default='10')
+
     # todo price and short description
 
 
