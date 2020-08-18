@@ -1,10 +1,22 @@
+from string import Template
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import  HttpResponse
-from django.contrib.auth import  logout
+from django.shortcuts import HttpResponse
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from .forms import User
 from .models import *
+import json
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib
+
+import http.client
+
+conn = http.client.HTTPSConnection("api.zoom.us")
 
 
 @login_required()
@@ -47,13 +59,32 @@ def registerpage(request):
 # todo more info page
 
 
+def thankyou(request, mid):
+    reply = ''
 
-def thankyou(request):
-    return HttpResponse("Thank You!!!")
-def simple_checkout(request):
-    return render(request, 'webapp/simplecheckout.html')
+    reply = simple_checkout(mid)
+
+    return render(request, 'webapp/thankyou.html', {'reply': reply})
 
 
+def simple_checkout(mid):
+    headers = {
+        'authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IkhEbHZ0UlhxdEoxVHhNcGdKd3lLSHFOemtqbXVOVmF1QWNtYiIsImV4cCI6MTU5Nzk5NDcwNywiaWF0IjoxNTk3Mzg5OTA4fQ.WVYsNsCpaDBjxTCeo9kGBvjZy-iGqaihqPX0YkzvUvo"}
+
+    conn.request("GET", "/v2/meetings/" + str(mid), headers=headers)
+
+    res = conn.getresponse()
+    data = res.read()
+    reply = json.loads(data.decode("utf-8"))
+    # print(reply)
+    # print(data.decode("utf-8"))
+    try:
+        email_sent(reply, 'jkdbqasjckab')
+        return reply['join_url']
+
+
+    except:
+        return reply
 
 
 def book(request, id):
@@ -70,7 +101,7 @@ def home(request):
         user_is_authenticated = request.session['user_is_authenticated']
     except:
         return redirect('/loginpage')
-    #GETS ALL OF THE CLASS EVENT OBJECTS
+    # GETS ALL OF THE CLASS EVENT OBJECTS
     events = Event.objects.all()
     events_sorted = []
     mini_events = []
@@ -114,6 +145,31 @@ def loginpage(request):
 
             return render(request, 'webapp/Login.html', {'incorrect': False})
     return render(request, 'webapp/Login.html', {'incorrect': False})
+
+
 # def event_detailed_view(request):
 #
 #     return render(request, "webapp/home.html")
+
+
+def read_template(filename):
+    with open(filename, 'r', encoding='utf-8') as template_file:
+        template_file_content = template_file.read()
+    return Template(template_file_content)
+
+
+def email_sent(reply, user):
+    print("sending email ")
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server.login('sportnowapi@gmail.com', 'vsjttrxislofsmot')
+    msg = MIMEMultipart()
+    message_template = read_template('webapp/message.html')
+    message = message_template.substitute(Message=reply['join_url'])
+    msg['From'] = 'SportsNow'
+    msg['To'] = 'andre2inggs@gmail.com'
+    msg['Cc'] = 'sportnowapi@gmail.com'
+    msg['Subject'] = 'Join Sport Event Link'
+    msg.attach(MIMEText(message, 'html'))
+    server.send_message(msg)
+    server.quit()
+    print('Email sent ')

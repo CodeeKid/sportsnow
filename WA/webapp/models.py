@@ -1,6 +1,59 @@
 from django.db import models
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
@@ -14,6 +67,7 @@ class Event(models.Model):
     time = models.CharField(max_length=100, default='')
     image_link = models.CharField(max_length=200, default='')
     price = models.CharField(max_length=100, default='10')
+    meeting_id = models.CharField(max_length=20)
 
     # todo price and short description
 

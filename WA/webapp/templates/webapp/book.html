@@ -7,19 +7,21 @@
     <title>{{event.title}}</title>
 </head>
 
- <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+
+<body>
+<link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/fonts/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static '/css/Login-Form-Dark.css' %}">
     <link rel="stylesheet" href="{% static '/css/styles.css' %}">
-<body>
-
+<div style="text-align:center; width:100%;">
 <h1>{{event.subtitle}}</h1>
 <br>
 <h2>{{event.date}}</h2>
 <br>
-<p>{{event.time}}</p>
+</p>Time: {{event.time}}</pTime:>
+</br>
 
-{{event.price}}
+R {{event.price}}
 
 
 <div id="paypal-button-container"></div>
@@ -28,6 +30,14 @@
  <script>
         // Render the PayPal button into #paypal-button-container
         paypal.Buttons({
+
+            style: {
+                shape:  'pill',
+                label:  'pay',
+                height: 40
+
+
+            },
 
             // Set up the transaction
             createOrder: function(data, actions) {
@@ -44,16 +54,15 @@
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     // Show a success message to the buyer
-                window.location.href = "/thankyou";               });
+                window.location.href = "/thankyou/{{event.meeting_id}}";               });
             }
 
 
         }).render('#paypal-button-container');</script>
 
-
-
+<h5> After payment please wait a few seconds for the transaction to complete </h5>
 <script src="{% static '/js/jquery.min.js' %}"></script>
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
-
+</div>
 </body>
 </html>

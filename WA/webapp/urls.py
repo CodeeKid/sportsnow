@@ -10,5 +10,6 @@ urlpatterns = [
     path('logout', pagelogout),
     path('accounts/', include('django.contrib.auth.urls')),
     path('simplecheckout', simple_checkout),
-    path('thankyou', thankyou)
+    path('thankyou/<int:mid>', thankyou)
+
 ]
