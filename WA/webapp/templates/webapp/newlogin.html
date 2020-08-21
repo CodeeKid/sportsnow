@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-{%load static %}
 <html>
-
+{{load static }}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Register</title>
+    <title>Untitled</title>
     <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/fonts/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static '/css/Login-Form-Dark.css' %}">
@@ -13,16 +12,19 @@
 </head>
 
 <body>
-    <div class="login-dark">
-        <form method="post" style="height:40%;">
-            {% csrf_token %}
+    <div class="login-dark" style="background-image: url(&quot;{% static '/img/11329627.jpg&quot;);' %}">
+        {% if incorrect %}
+        <p>Incorrect Username and password</p>
+        {% endif %}
+        <form method="post">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" style="background-color: rgb(160,156,46)":type="submit">Register</button></div>
-        </form>
-
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div><a class="forgot" href="#">Forgot your email or password?</a></form>
+    </div>
+     <a style= "text-align:center" href="/register">Not yet registered? </a>
+        <p></p></form>
     </div>
     <script src="{% static '/js/jquery.min.js' %}"></script>
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>

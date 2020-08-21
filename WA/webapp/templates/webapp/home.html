@@ -1,14 +1,12 @@
-
-
 <!DOCTYPE html>
-{%load static %}
+{% load static %}
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Sportnow</title>
-    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <title>Home - Brand</title>
+     <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
@@ -18,117 +16,44 @@
 
 <body id="page-top">
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
-        <div class="container">
-            <picture><img src="{% static '/img/moonsport-black-50.png' %}"></picture><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-            <div
-                class="collapse navbar-collapse" id="navbarResponsive">
+        <div class="container"><img style="background-image: url({% static '/img/moonsport-black-50.png' %});width: 208px;height: 41px;"><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto text-uppercase">
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="https://moonsport.tv/case-studies/">Case Studies</a></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="https://moonsport.tv/services/">SERVICES</a></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="https://moonsport.tv/people/">PEOPLE</a></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="https://moonsport.tv/contact/">Contact</a></li>
-                    <div ><button class="btn btn-primary btn-block"  href= "" type="submit" style=" align; background-color: rgb(160,156,46);">Log Out</button></div>
-
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
                 </ul>
-        </div>
-        </div>
-    </nav>
-    <header class="masthead" style="background-image: url{ % static '/img/View-from-back-of-goal-Lyon-France-1132x509.jpg' %};">
-        <div class="container">
-            <div class="intro-text" style="background-size: cover;">
-                <div class="intro-lead-in"><span class="text-dark">MoonSportNow</span></div>
-                <div class="intro-heading text-uppercase"><span class="text-dark">Buy the tickets now</span></div>
             </div>
         </div>
+    </nav>
+    <header class="masthead" style="background-image: url({% static '/img/View-from-back-of-goal-Lyon-France-1132x509.jpg' %});">
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in"><span style="color: rgb(59,59,59);font-size: 45px;">Welcome To Our Studio!</span></div>
+                <div class="intro-heading text-uppercase"><span style="color: rgb(65,62,62);">It's Nice To Meet You</span></div><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button" href="#services">Tell me more</a></div>
+        </div>
     </header>
-    <section id="services" style="background-color: rgba(248,227,42,0.64); ">
+    <section id="services">
         {% for event in events %}
-        <div class="row" style="background-color: #282828; align:left; padding-top:10px;">
+        <div class="card-group">
             {% for e in event %}
-            <div class="col" style="background-color: #2c2c2c;">
-                <div class="card bg-dark" style="width: 300px;height: 300px;background-color: rgb(64,63,63);">
-                    <div class="card-body" style =  "align:left;">
-                        {% if not e.title == '' %}
-                        <h4 class="text-white card-title">{{e.title}}</h4>
-                        <h6 class="text-muted card-subtitle mb-2">{{e.subtitle}}</h6>
-                        <p class="text-white card-text"> {{e.date}}{{e.time}}.</p>
-                        <a href="/book/{{e.pk}}" class="card-link" style=" background-color: rgb(160,156,46);"><button>   Book & More Details </button></a>
-                        <img src="{{e.image_link}}" style="padding-top:10px" height="145" width="260" align="left"/>
-
-
-                        {% endif %}
-                        </div>
+            <div class="card"><img class="card-img-top w-100 d-block" style="background-image: url({% static '/img/1103840.jpg' %});width: 388px;height: 220px;">
+                <div class="card-body">
+                    <h4 class="card-title">{{e.title}}</h4>
+                    <p class="card-text">{{e.date}} {{e.time}}</p>
+                    <button class="btn btn-primary" onclick= "window.location.href='/book/{{e.pk}}'"; type="button">Book & More Details</button>
                 </div>
             </div>
             {% endfor %}
         </div>
         {% endfor %}
-
-<!--        <div class="row" style="background-color: #282828;">-->
-<!--            <div class="col" style="background-color: #2c2c2c;">-->
-<!--                <div class="card bg-dark" style="width: 300px;height: 300px;background-color: rgb(64,63,63);">-->
-<!--                    <div class="card-body">-->
-<!--                        <h4 class="text-white card-title">Rugby</h4>-->
-<!--                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>-->
-<!--                        <p class="text-white card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><a class="card-link" href="#">Link</a><a class="card-link"-->
-<!--                            href="#">Link</a></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col" style="background-color: #2c2c2c;">-->
-<!--                <div class="card bg-dark" style="width: 300px;height: 300px;background-color: rgb(64,63,63);">-->
-<!--                    <div class="card-body">-->
-<!--                        <h4 class="text-white card-title">Rugby</h4>-->
-<!--                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>-->
-<!--                        <p class="text-white card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><a class="card-link" href="#">Link</a><a class="card-link"-->
-<!--                            href="#">Link</a></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col" style="background-color: #2c2c2c;">-->
-<!--                <div class="card bg-dark" style="width: 300px;height: 300px;background-color: rgb(64,63,63);">-->
-<!--                    <div class="card-body">-->
-<!--                        <h4 class="text-white card-title">Rugby</h4>-->
-<!--                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>-->
-<!--                        <p class="text-white card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><a class="card-link" href="#">Link</a><a class="card-link"-->
-<!--                            href="#">Link</a></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col" style="background-color: #2c2c2c;">-->
-<!--                <div class="card bg-dark" style="width: 300px;height: 300px;background-color: rgb(64,63,63);">-->
-<!--                    <div class="card-body">-->
-<!--                        <h4 class="text-white card-title">Rugby</h4>-->
-<!--                        <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>-->
-<!--                        <p class="text-white card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><a class="card-link" href="#">Link</a><a class="card-link"-->
-<!--                            href="#">Link</a></div>-->
-<!--                </div>-->
-<!--            </div>-->
-
     </section>
-    <footer style="background-color: rgba(98,95,95,0.73);">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 text-white"><span class="copyright">Copyright&nbsp;© Brand 2020</span></div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline quicklinks">
-                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-                        <li class="list-inline-item"><a href="#">Terms of Use</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
 
-    </footer>
+
+
     <script src="{% static '/js/jquery.min.js' %}"></script>
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>

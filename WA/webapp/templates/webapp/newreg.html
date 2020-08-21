@@ -14,15 +14,14 @@
 
 <body>
     <div class="login-dark">
-        <form method="post" style="height:40%;">
+        <form method="post">
             {% csrf_token %}
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" style="background-color: rgb(160,156,46)":type="submit">Register</button></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Register</button></div>
         </form>
-
     </div>
     <script src="{% static '/js/jquery.min.js' %}"></script>
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
