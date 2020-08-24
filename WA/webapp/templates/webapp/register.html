@@ -13,13 +13,18 @@
 </head>
 
 <body>
-    <div class="login-dark">
-        <form method="post" style="height:40%;">
+
+
+    <div class="login-dark"    style="background-image: url({% static '/img/View-from-back-of-goal-Lyon-France-1132x509.jpg' %});background-size:cover;">
+
+        <form method="post" style="height:50%;">
             {% csrf_token %}
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="form-group"><input class="form-control" type="password" name="password1" placeholder="Password"></div>
+            <div class="form-group"><input class="form-control" type="password" name="password2" placeholder="Re-eneter Password"></div>
+
             <div class="form-group"><button class="btn btn-primary btn-block" style="background-color: rgb(160,156,46)":type="submit">Register</button></div>
         </form>
 

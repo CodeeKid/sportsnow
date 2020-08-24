@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-
+admin.site.site_header = "Moonsport Admin"
+admin.site.site_title = "Welcome to the Admin page"
+admin.site.index_title = "Welcome to the Admin page"
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('', include('webapp.urls')),
     path('accounts/', include('django.contrib.auth.urls')),

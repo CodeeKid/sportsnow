@@ -1,9 +1,13 @@
 .login-dark {
   height: 1000px;
-  background: #475d62 url(../../assets/img/star-sky.jpg);
+  background:  url({% static '/img/11329627.jpg' %});
   background-size: cover;
   position: relative;
-  background-image: url("../../assets/img/star-sky.jpg");
+
+
+}
+.img {
+opacity: 0.5;
 }
 
 .login-dark form {

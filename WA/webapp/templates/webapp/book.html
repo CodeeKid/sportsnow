@@ -5,16 +5,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{event.title}}</title>
+
+        <style>
+img {
+  opacity: 0.;
+}
+
+
+
+
+        </style>
+
+
 </head>
 
 
-<body>
-<link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static '/fonts/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static '/css/Login-Form-Dark.css' %}">
-    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
-<div style="text-align:center; width:100%;">
-<h1>{{event.subtitle}}</h1>
+
+<body style="text-align:center;text-color:white; width:100%; background-image: url({{event.image_link}});background-repeat: no-repeat;background-size: cover;">
+<div>
+<h1>{{event.subtitle}} </h1>
 <br>
 <h2>{{event.date}}</h2>
 <br>
@@ -22,11 +31,8 @@
 </br>
 
 R {{event.price}}
-
-
 <div id="paypal-button-container"></div>
     <script src="https://www.paypal.com/sdk/js?client-id=Ab6Njz7qVA6YsnFS191yCwGPscjZrgVRK_hzhcDgD_FY2h6k3jGOlHFgYpY7-hGmcLm8ncckc-dzH2xm&currency=USD"></script>
-
  <script>
         // Render the PayPal button into #paypal-button-container
         paypal.Buttons({
@@ -54,15 +60,25 @@ R {{event.price}}
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     // Show a success message to the buyer
-                window.location.href = "/thankyou/{{event.meeting_id}}";               });
+                window.location.href = "/thankyou/{{event.pk}}";               });
             }
 
 
         }).render('#paypal-button-container');</script>
 
 <h5> After payment please wait a few seconds for the transaction to complete </h5>
+
+<link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/Login-Form-Dark.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+
+
+
 <script src="{% static '/js/jquery.min.js' %}"></script>
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
 </div>
+    </div>
 </body>
+
 </html>

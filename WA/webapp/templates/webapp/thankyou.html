@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Thank You </title>
+
+
+
 <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
@@ -11,14 +15,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
     <link rel="stylesheet" href="{% static '/fonts/font-awesome.min.css' %}">
 </head>
-<body>
-<h1>
 
 
+</div>
 
-    <a style = ""href="{{reply}}"> Join Event </a>
-    </br>
-</h1>
+<body style="background-image: url({{event.image_link}});background-repeat: no-repeat;background-size: cover;">
+ <div class="text-center d-lg-flex justify-content-lg-center align-items-lg-center" style="height: 100%;width: 100%;max-height: 100%;min-height: 100%;">
+        <button onclick="window.location.href='{{url}}'";  type="button" style="background-color: rgb(248,219,67);color: rgb(7,7,7);width: 300px;height: 50px;font-size: 27px;margin-top:20%;"><strong>Join Event</strong></button></div>
+
+</div>
 
 <script src="{% static '/js/jquery.min.js' %}"></script>
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>

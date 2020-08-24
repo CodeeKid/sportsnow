@@ -61,15 +61,20 @@ def registerpage(request):
 
 def thankyou(request, mid):
     reply = ''
+    event = Event.objects.get(pk=mid)
+    print(event)
 
-    reply = simple_checkout(mid)
+    reply = simple_checkout(event.meeting_id)
 
-    return render(request, 'webapp/thankyou.html', {'reply': reply})
+    return render(request, 'webapp/thankyou.html', {'event': event, 'url': reply})
 
 
 def simple_checkout(mid):
     headers = {
-        'authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IkhEbHZ0UlhxdEoxVHhNcGdKd3lLSHFOemtqbXVOVmF1QWNtYiIsImV4cCI6MTU5Nzk5NDcwNywiaWF0IjoxNTk3Mzg5OTA4fQ.WVYsNsCpaDBjxTCeo9kGBvjZy-iGqaihqPX0YkzvUvo"}
+        'authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGc"
+                         "iOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IkhEbHZ0U"
+                         "lhxdEoxVHhNcGdKd3lLSHFOemtqbXVOVmF1QWNtYiIsImV4cCI6MTU5ODYwM"
+                         "TMyNiwiaWF0IjoxNTk3OTk2NTI2fQ.Ax5FuyGhjz4RgqEy3gFipgEyTPg_PAStYIzT2dp2nI8"}
 
     conn.request("GET", "/v2/meetings/" + str(mid), headers=headers)
 

@@ -5,52 +5,75 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Brand</title>
+    <title>SportsNow</title>
      <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
     <link rel="stylesheet" href="{% static '/fonts/font-awesome.min.css' %}">
-</head>
 
 <body id="page-top">
+
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
-        <div class="container"><img style="background-image: url({% static '/img/moonsport-black-50.png' %});width: 208px;height: 41px;"><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive"
+        <div class="container"><img style=" background-image: url({% static '/img/moonsport-black-50.png' %});width: 310px;height: 50px;"><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="nav navbar-nav ml-auto text-uppercase">
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
-                </ul>
+
             </div>
+            		<ul class="sf-menu">
+							<li id="menu-item-407" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-407"><a href="https://moonsport.tv/case-studies/">Case Studies</a></li>
+<li id="menu-item-305" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-305"><a href="https://moonsport.tv/services/">Services</a></li>
+<li id="menu-item-361" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-361"><a href="https://moonsport.tv/people/">People</a></li>
+<li id="menu-item-372" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-372"><a href="https://moonsport.tv/contact/">Contact</a></li>
+						</ul>
+
+
+													<ul class="buttons sf-menu" data-user-set-ocm="off">
+
+
+							</ul>
+
         </div>
     </nav>
-    <header class="masthead" style="background-image: url({% static '/img/View-from-back-of-goal-Lyon-France-1132x509.jpg' %});">
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in"><span style="color: rgb(59,59,59);font-size: 45px;">Welcome To Our Studio!</span></div>
-                <div class="intro-heading text-uppercase"><span style="color: rgb(65,62,62);">It's Nice To Meet You</span></div><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button" href="#services">Tell me more</a></div>
-        </div>
-    </header>
+
+
+
     <section id="services">
         {% for event in events %}
-        <div class="card-group">
+        <div class="card-group"style="">
             {% for e in event %}
-            <div class="card"><img class="card-img-top w-100 d-block" style="background-image: url({% static '/img/1103840.jpg' %});width: 388px;height: 220px;">
+            <div class="card">
+                <img  class="zoom"  style=" background-image: url({{e.image_link}}) ; background-size: cover; width: 335px;height: 220px; "  class="thumbnail" height="100" width="100"  >
                 <div class="card-body">
+                    {% if not e.title == "" %}
                     <h4 class="card-title">{{e.title}}</h4>
                     <p class="card-text">{{e.date}} {{e.time}}</p>
                     <button class="btn btn-primary" onclick= "window.location.href='/book/{{e.pk}}'"; type="button">Book & More Details</button>
+                    {% endif %}
                 </div>
+
             </div>
             {% endfor %}
         </div>
         {% endfor %}
     </section>
+
+<style>
+.zoom {
+  padding: 0px;
+
+  transition: transform .2s; /* Animation */
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+</style>
+
 
 
 
